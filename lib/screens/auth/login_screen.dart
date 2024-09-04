@@ -15,7 +15,7 @@ class LoginScreen extends StatelessWidget {
       body: SafeArea(
           child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-        child: Column(
+      child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(

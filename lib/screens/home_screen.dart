@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_todo_app/custom%20widgets/todo_widget.dart';
 import 'package:firebase_todo_app/database/database_methods.dart';
 import 'package:firebase_todo_app/screens/add_todo_screen.dart';
+import 'package:firebase_todo_app/screens/todo_screen.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -28,11 +29,10 @@ class _HomeScreenState extends State<HomeScreen> {
                       context: context,
                       builder: (BuildContext context) {
                         return AlertDialog(
-                          title: Text("Confirm Logout"),
-                          content: Text("Are you sure you want to logout?"),
+                          title: const Text("Confirm Logout"),
+                          content: const  Text("Are you sure you want to logout?"),
                           actionsAlignment: MainAxisAlignment.spaceBetween,
                           actions: [
-                            
                             TextButton(
                                 onPressed: () {
                                   Navigator.pop(context);
@@ -94,7 +94,10 @@ class _HomeScreenState extends State<HomeScreen> {
                           );
                         },
                         onListTap: () {
-                          print("Navigate to next page");
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => TodoScreen(todoId: todo["Todo Id"])));
                         },
                         initialCheckedState: checkedState,
                       );

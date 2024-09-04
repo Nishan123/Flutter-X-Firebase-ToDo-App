@@ -13,15 +13,30 @@ class DatabaseMethods {
         .set(todoMap);
   }
 
+  Future deleteTodo(String todoId) {
+    return FirebaseFirestore.instance
+        .collection("ToDo Lists")
+        .doc(todoId)
+        .delete();
+  }
+
   Future checkTodo(String todoId, bool isCompleted) {
     return FirebaseFirestore.instance
         .collection("ToDo Lists")
         .doc(todoId)
-        .update({'isCompleted':isCompleted});
+        .update({'isCompleted': isCompleted});
   }
 
   Stream<QuerySnapshot> getTodos() {
     return FirebaseFirestore.instance.collection("ToDo Lists").snapshots();
+  }
+
+  Stream<Map<String, dynamic>?> getSpecificTodo(String todoId) {
+    return FirebaseFirestore.instance
+        .collection("ToDo Lists")
+        .doc(todoId)
+        .snapshots()
+        .map((snapshot) => snapshot.data());
   }
 
   Future<void> signUp(String email, String password) async {

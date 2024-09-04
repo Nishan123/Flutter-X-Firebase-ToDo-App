@@ -5,7 +5,7 @@ class TodoWidget extends StatefulWidget {
   final String subTitle;
   final VoidCallback onListTap;
   final bool initialCheckedState;
-  final  Function(bool?) clickCheckbox;
+  final Function(bool?) clickCheckbox;
   const TodoWidget({
     super.key,
     required this.title,
@@ -36,6 +36,8 @@ class _TodoWidgetState extends State<TodoWidget> {
       child: ListTile(
         title: Text(
           widget.title,
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
           style: TextStyle(
               fontSize: 20,
               color: Colors.white,
@@ -43,8 +45,12 @@ class _TodoWidgetState extends State<TodoWidget> {
               decoration: isTicked ? TextDecoration.lineThrough : null,
               decorationColor: Colors.white),
         ),
-        subtitle:
-            Text(widget.subTitle, style: const TextStyle(color: Colors.white)),
+        subtitle: Text(widget.subTitle,
+        maxLines: 1,
+        overflow: TextOverflow.ellipsis,
+            style: const TextStyle(
+              color: Colors.white,
+            )),
         onTap: widget.onListTap,
         trailing: GestureDetector(
           onTap: () {
