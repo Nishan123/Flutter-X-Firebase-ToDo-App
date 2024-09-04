@@ -70,7 +70,7 @@ class _TodoWidgetState extends State<TodoWidget> {
                 widget.clickCheckbox(isTicked);
               },
               checkColor: Colors.black,
-              fillColor: WidgetStateProperty.all(Colors.white),
+              fillColor: WidgetStateProperty.all(const Color.fromARGB(110, 255, 255, 255)),
               side: const BorderSide(color: Colors.white),
             ),
           ),

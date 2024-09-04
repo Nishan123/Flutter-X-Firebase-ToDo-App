@@ -12,6 +12,7 @@ class DatabaseMethods {
         .doc(todoId)
         .set(todoMap);
   }
+  
 
   Future deleteTodo(String todoId) {
     return FirebaseFirestore.instance

@@ -1,5 +1,6 @@
 import 'package:firebase_todo_app/custom%20widgets/custom_button.dart';
 import 'package:firebase_todo_app/database/database_methods.dart';
+import 'package:firebase_todo_app/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 
 class TodoScreen extends StatefulWidget {
@@ -18,7 +19,43 @@ class _TodoScreenState extends State<TodoScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text("Your Todo"), actions: [
-        IconButton(onPressed: () {}, icon: const Icon(Icons.delete)),
+        IconButton(
+            onPressed: () {
+              showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      title: const Text("Confirm delete"),
+                      content: const Text(
+                          "Are you sure you want to Delete this list ?"),
+                      actionsAlignment: MainAxisAlignment.spaceBetween,
+                      actions: [
+                        TextButton(
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                            child: const Text("Cancel")),
+                        TextButton(
+                            onPressed: () {
+                              DatabaseMethods()
+                                  .deleteTodo(widget.todoId)
+                                  .then((_) {
+                                Navigator.pushReplacement(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const HomeScreen()));
+                              });
+                            },
+                            child: const Text(
+                              "Confirm",
+                              style: TextStyle(color: Colors.red),
+                            )),
+                      ],
+                    );
+                  });
+            },
+            icon: const Icon(Icons.delete)),
       ]),
       body: SafeArea(
         child: Padding(
@@ -34,24 +71,43 @@ class _TodoScreenState extends State<TodoScreen> {
                 var todoData = snapshot.data;
                 String title = todoData?["Title"];
                 String description = todoData?["Description"];
+                String date = todoData?["Date added"];
+                String time = todoData?["Time added"];
 
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
                       title,
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
+                      style: const TextStyle(
+                          fontWeight: FontWeight.bold, fontSize: 30),
                     ),
-                    const SizedBox(height: 20),
+                    const SizedBox(height: 5),
+                    Row(
+                      children: [
+                        Text(
+                          date,
+                          style: const TextStyle(color: Colors.black54),
+                        ),
+                        const Spacer(),
+                        Text(
+                          time,
+                          style: const TextStyle(color: Colors.black54),
+                        )
+                      ],
+                    ),
+                    const SizedBox(height: 10),
                     Text(
                       description,
-                      style: TextStyle(fontSize: 20),
+                      style:
+                          const TextStyle(fontSize: 18, color: Colors.black54),
                     ),
-                    Spacer(),
+                    const Spacer(),
                     CustomButton(
-                      text: "Mark as Complete    ",
-                      onPressed: () {},
+                      text: "Save changes ",
+                      onPressed: () {
+                        //Todo: add update functionality
+                      },
                       suffixIcon: const Icon(
                         Icons.done,
                         color: Colors.white,

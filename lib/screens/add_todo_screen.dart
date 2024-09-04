@@ -18,8 +18,8 @@ class AddTodoScreen extends StatelessWidget {
     // Formatting the date and time as strings
     String formattedDate =
         "${currentDate.year}-${currentDate.month.toString().padLeft(2, '0')}-${currentDate.day.toString().padLeft(2, '0')}";
-    String formattedTime =
-        "${currentTime.hour.toString().padLeft(2, '0')}:${currentTime.minute.toString().padLeft(2, '0')}";
+String formattedTime = "${currentTime.hourOfPeriod.toString().padLeft(2, '0')}:${currentTime.minute.toString().padLeft(2, '0')} ${currentTime.period == DayPeriod.am ? 'AM' : 'PM'}";
+
 
     String todoId = randomAlphaNumeric(8);
 
@@ -49,15 +49,37 @@ class AddTodoScreen extends StatelessWidget {
               CustomButton(
                   text: "Add List",
                   onPressed: () {
-                    Map<String, dynamic> todoMap = {
-                      "Todo Id": todoId,
-                      "Title": titleController.text.toString(),
-                      "Description": descriptionController.text.toString(),
-                      "Date added": formattedDate,
-                      "Time added": formattedTime,
-                      "isCompleted": false
-                    };
-                    DatabaseMethods().addTodo(todoMap, todoId);
+                    if (titleController.text.isEmpty) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              Text("Title cannot be empty !"),
+                              Spacer(),
+                              Icon(
+                                Icons.error,
+                                color: Colors.white,
+                              )
+                            ],
+                          ),
+                        ),
+                      );
+                    } else {
+                      Map<String, dynamic> todoMap = {
+                        "Todo Id": todoId,
+                        "Title": titleController.text.toString(),
+                        "Description": descriptionController.text.toString(),
+                        "Date added": formattedDate,
+                        "Time added": formattedTime,
+                        "isCompleted": false
+                      };
+                      DatabaseMethods().addTodo(todoMap, todoId).then(
+                        (_) {
+                          Navigator.pop(context);
+                        },
+                      );
+                    }
                   })
             ],
           ),
