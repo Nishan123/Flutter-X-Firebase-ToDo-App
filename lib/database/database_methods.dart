@@ -12,7 +12,13 @@ class DatabaseMethods {
         .doc(todoId)
         .set(todoMap);
   }
-  
+
+  Future updateTodo(Map<String, dynamic> updatedTodo, String todoId) {
+    return FirebaseFirestore.instance
+        .collection("ToDo Lists")
+        .doc(todoId)
+        .update(updatedTodo);
+  }
 
   Future deleteTodo(String todoId) {
     return FirebaseFirestore.instance

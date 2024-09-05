@@ -73,14 +73,22 @@ class _TodoScreenState extends State<TodoScreen> {
                 String description = todoData?["Description"];
                 String date = todoData?["Date added"];
                 String time = todoData?["Time added"];
+                TextEditingController descriptionController =
+                    TextEditingController(text: description);
+                TextEditingController titleController =
+                    TextEditingController(text: title);
 
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      title,
+                    TextField(
+                      controller: titleController,
                       style: const TextStyle(
-                          fontWeight: FontWeight.bold, fontSize: 30),
+                          fontSize: 20, fontWeight: FontWeight.bold),
+                      minLines: 1,
+                      maxLines: null,
+                      decoration:
+                          const InputDecoration(border: InputBorder.none),
                     ),
                     const SizedBox(height: 5),
                     Row(
@@ -97,16 +105,25 @@ class _TodoScreenState extends State<TodoScreen> {
                       ],
                     ),
                     const SizedBox(height: 10),
-                    Text(
-                      description,
-                      style:
-                          const TextStyle(fontSize: 18, color: Colors.black54),
+                    TextField(
+                      controller: descriptionController,
+                      style: const TextStyle(color: Colors.black87),
+                      minLines: 1,
+                      maxLines: null,
+                      decoration:
+                          const InputDecoration(border: InputBorder.none),
                     ),
                     const Spacer(),
                     CustomButton(
                       text: "Save changes ",
                       onPressed: () {
                         //Todo: add update functionality
+                        Map<String, dynamic> updatedTodo = {
+                          "Title": titleController.text.toString(),
+                          "Description": descriptionController.text.toString()
+                        };
+                        DatabaseMethods()
+                            .updateTodo(updatedTodo, widget.todoId);
                       },
                       suffixIcon: const Icon(
                         Icons.done,
