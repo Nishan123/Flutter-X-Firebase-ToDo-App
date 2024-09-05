@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_todo_app/screens/auth/signup_screen.dart';
+import 'package:firebase_todo_app/screens/auth/login_screen.dart';
 import 'package:firebase_todo_app/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -17,6 +17,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
+        fontFamily: "OpenSans",
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
         appBarTheme: AppBarTheme(
@@ -42,7 +43,7 @@ class AuthWrapper extends StatelessWidget {
         if (snapshot.hasData && snapshot.data != null) {
           return const HomeScreen();
         } else {
-          return const SignupScreen();
+          return const LoginScreen();
         }
       },
     );
