@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
           titleTextStyle: const TextStyle(color: Colors.white,fontWeight: FontWeight.bold, fontSize: 20),
           iconTheme: const IconThemeData(color: Colors.white)
           
-        )
+        ),
       ),
       home: const AuthWrapper(),
     );
