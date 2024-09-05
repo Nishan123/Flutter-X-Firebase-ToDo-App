@@ -75,7 +75,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 } else if (snapshot.hasError) {
                   return Center(child: Text('Error: ${snapshot.error}'));
                 } else if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
-                  return const Center(child: Text('No Todo Items Found'));
+                  return const Center(child: Text('No Todo Items Found',style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.black26),));
                 }
                 final todoList = snapshot.data!.docs;
                 return ListView.builder(

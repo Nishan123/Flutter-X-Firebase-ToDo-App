@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_todo_app/custom%20widgets/custom_button.dart';
 import 'package:firebase_todo_app/custom%20widgets/custom_text_field.dart';
 import 'package:firebase_todo_app/custom%20widgets/multi_lined_text_field.dart';
@@ -72,7 +73,8 @@ String formattedTime = "${currentTime.hourOfPeriod.toString().padLeft(2, '0')}:$
                         "Description": descriptionController.text.toString(),
                         "Date added": formattedDate,
                         "Time added": formattedTime,
-                        "isCompleted": false
+                        "isCompleted": false,
+                        "uid":FirebaseAuth.instance.currentUser?.uid.toString()
                       };
                       DatabaseMethods().addTodo(todoMap, todoId).then(
                         (_) {

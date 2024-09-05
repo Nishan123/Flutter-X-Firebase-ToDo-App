@@ -43,8 +43,7 @@ class _TodoScreenState extends State<TodoScreen> {
                                 Navigator.pushReplacement(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) =>
-                                            const HomeScreen()));
+                                        builder: (_) => const HomeScreen()));
                               });
                             },
                             child: const Text(

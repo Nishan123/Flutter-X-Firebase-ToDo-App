@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 class DatabaseMethods {
+  var user = FirebaseAuth.instance.currentUser;
   Future addTodo(Map<String, dynamic> todoMap, String todoId) {
     return FirebaseFirestore.instance
         .collection("ToDo Lists")
@@ -35,7 +36,10 @@ class DatabaseMethods {
   }
 
   Stream<QuerySnapshot> getTodos() {
-    return FirebaseFirestore.instance.collection("ToDo Lists").snapshots();
+    return FirebaseFirestore.instance
+        .collection("ToDo Lists")
+        .where('uid', isEqualTo: user?.uid)
+        .snapshots();
   }
 
   Stream<Map<String, dynamic>?> getSpecificTodo(String todoId) {
