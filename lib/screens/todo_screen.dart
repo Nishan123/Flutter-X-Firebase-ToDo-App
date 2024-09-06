@@ -1,6 +1,6 @@
-import 'package:firebase_todo_app/custom%20widgets/custom_button.dart';
-import 'package:firebase_todo_app/database/database_methods.dart';
-import 'package:firebase_todo_app/screens/home_screen.dart';
+import 'package:TodoApp/custom%20widgets/custom_button.dart';
+import 'package:TodoApp/database/database_methods.dart';
+import 'package:TodoApp/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 
 class TodoScreen extends StatefulWidget {

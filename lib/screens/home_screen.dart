@@ -1,8 +1,8 @@
+import 'package:TodoApp/custom%20widgets/todo_widget.dart';
+import 'package:TodoApp/database/database_methods.dart';
+import 'package:TodoApp/screens/add_todo_screen.dart';
+import 'package:TodoApp/screens/todo_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_todo_app/custom%20widgets/todo_widget.dart';
-import 'package:firebase_todo_app/database/database_methods.dart';
-import 'package:firebase_todo_app/screens/add_todo_screen.dart';
-import 'package:firebase_todo_app/screens/todo_screen.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {

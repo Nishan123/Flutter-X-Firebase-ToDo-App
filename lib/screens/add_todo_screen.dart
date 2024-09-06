@@ -1,8 +1,8 @@
+import 'package:TodoApp/custom%20widgets/custom_button.dart';
+import 'package:TodoApp/custom%20widgets/custom_text_field.dart';
+import 'package:TodoApp/custom%20widgets/multi_lined_text_field.dart';
+import 'package:TodoApp/database/database_methods.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_todo_app/custom%20widgets/custom_button.dart';
-import 'package:firebase_todo_app/custom%20widgets/custom_text_field.dart';
-import 'package:firebase_todo_app/custom%20widgets/multi_lined_text_field.dart';
-import 'package:firebase_todo_app/database/database_methods.dart';
 import 'package:flutter/material.dart';
 import 'package:random_string/random_string.dart';
 
