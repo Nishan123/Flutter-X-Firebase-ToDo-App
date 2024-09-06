@@ -39,9 +39,9 @@ class _TodoWidgetState extends State<TodoWidget> {
           maxLines: 1,
           overflow: TextOverflow.ellipsis,
           style: TextStyle(
-              fontSize: 20,
+              fontSize: 18,
               color: Colors.white,
-              fontWeight: FontWeight.bold,
+              fontWeight: FontWeight.w600,
               decoration: isTicked ? TextDecoration.lineThrough : null,
               decorationColor: Colors.white),
         ),
